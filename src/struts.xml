@@ -27,13 +27,13 @@
             <result name="SUCCESS">/viewAllMembers.jsp</result>
      </action>
      
-		
-		
-<!-- 		<action name="createNewUser" class="framework.User" method ="createUser"> -->
-<!--             <result name="SUCCESS">/user.jsp</result> -->
-<!-- 			<result name="FAILURE">/guest.jsp</result> -->
-<!--         </action> -->
-		
+	<action name="viewUser" class="actions.ViewUser" method="view">
+		<result name="SUCCESS">/member.jsp</result>
+	</action>
+<!-- 	Chain allows to redirect to an action rather than a jsp -->
+	<action name="addFriend" class="actions.AddFriend" method="add">
+		<result name="SUCCESS" type="chain">viewUser</result>
+	</action>
 		
     </package>
 </struts>
