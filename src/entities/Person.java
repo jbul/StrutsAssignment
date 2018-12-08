@@ -53,5 +53,4 @@ public class Person {
 				+ password + ", gender=" + gender;
 	}
     
-    
 }

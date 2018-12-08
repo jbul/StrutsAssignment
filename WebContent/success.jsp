@@ -11,6 +11,8 @@
         <h3>Thank you for registering <s:property value="person.firstName"/>! </h3>
 	
 	<!-- link not working -->
-    <p><a href="<s:url action='index' />" >Return to home page to log in</a>.</p> 
+    <p><a href="<s:url action='index' />" >Return to home page to log in</a>.</p>
+    <s:a href="index.jsp" >Return home page</s:a>
+<%--     <s:action name="index">Return home page</s:action> --%>
     </body>
 </html>

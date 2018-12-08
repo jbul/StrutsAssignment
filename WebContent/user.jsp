@@ -12,5 +12,13 @@
 	<s:form action="logout">
 		<s:submit value="log out"></s:submit>
 	</s:form>
+	<h3>Search Friends</h3>
+	<s:form action="searchFriends">
+		<s:textfield name="searchField"></s:textfield>
+		<s:submit value="search"></s:submit>
+	</s:form>
+	<s:form action="viewAllUsers">
+		<s:submit value="View all members"></s:submit>
+	</s:form>
     </body>
 </html>

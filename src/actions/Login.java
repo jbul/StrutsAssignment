@@ -4,29 +4,28 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
 import dao.BaseDAO;
 import entities.Person;
 
-public class Login implements SessionAware {
-	private Person person; 
-	Map<String, Object> sessionmap; 
+public class Login extends ActionSupport {
+	private Person person;
 	BaseDAO dao;
-	
+
 	public Login() {
 		dao = new BaseDAO();
 	}
 	
-	@Override
-	public void setSession(Map map) {
-		this.sessionmap = (Map<String, Object>) map;
-	}
 	
 	public String login() {
+		Map<String, Object> sessionmap = ActionContext.getContext().getSession(); 
 		//check if logged in 
 		Person p = dao.login(person.getEmail(), person.getPassword());
 		if(p != null) {
-			this.sessionmap.put("loggedUser", p);
-			person = p;
+			sessionmap.put("loggedUser", p);
+//			person = p;
 			return "USER";
 		}
 		else {
@@ -35,6 +34,7 @@ public class Login implements SessionAware {
 	}
 	
 	public String logout(){
+		Map<String, Object> sessionmap = ActionContext.getContext().getSession(); 
 		sessionmap.clear();
 		return "SUCCESS";
 	}

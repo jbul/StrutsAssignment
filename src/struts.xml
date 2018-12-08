@@ -7,7 +7,7 @@
     
     <action name="register" class="actions.Register" method ="execute">
            <result name="SUCCESS">/success.jsp</result>
-			<result name="FAILURE">/failure.jsp</result>
+			<result name="FAILURE">/index.jsp</result>
     </action>
         
     <action name="login" class="actions.Login" method ="login">
@@ -17,6 +17,14 @@
      
      <action name="logout" class="actions.Login" method ="logout">
             <result name="SUCCESS">/index.jsp</result>
+     </action>
+     
+     <action name="searchFriends" class="actions.SearchUsers" method ="search">
+            <result name="SUCCESS">/searchResult.jsp</result>
+     </action>
+     
+     <action name="viewAllUsers" class="actions.SearchUsers" method ="display">
+            <result name="SUCCESS">/viewAllMembers.jsp</result>
      </action>
      
 		

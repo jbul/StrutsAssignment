@@ -8,6 +8,8 @@
 <title>Log In or Register</title>
 </head>
 <body>
+	<s:property value="returnMessage" />
+
 	<h3>Log in</h3>
 
 	<s:form action="login">
