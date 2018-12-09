@@ -8,20 +8,21 @@
 <title>Log In or Register</title>
 </head>
 <body>
+
 	<s:property value="returnMessage" />
 
 	<h3>Log in</h3>
 
 	<s:form action="login">
 		<s:textfield name="person.email" label="Email"></s:textfield>
-		<s:password name="person.password" label="Password" ></s:password>
+		<s:password name="person.password" label="Password"></s:password>
 
 		<s:submit value="log in"></s:submit>
 	</s:form>
 	<h3>Register</h3>
 
 	<s:form action="register">
-		<s:textfield name="person.firstName" label="Fisrt Name"  ></s:textfield>
+		<s:textfield name="person.firstName" label="Fisrt Name"></s:textfield>
 		<s:textfield name="person.lastName" label="Last Name"></s:textfield>
 		<s:textfield name="person.email" label="Email"></s:textfield>
 		<s:password name="person.password" label="Password"></s:password>

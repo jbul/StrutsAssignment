@@ -1,0 +1,30 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	padding: 2%;
+	background: black;
+	color: white;
+}
+
+header a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+section {
+	padding: 2%;
+}
+
+.post {
+	margin: 1% 0;
+	border: 1px solid gray;
+	padding: 1%;
+}
+.post a {
+	font-weight: bold;
+	text-decoration: none;
+}

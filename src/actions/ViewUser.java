@@ -10,10 +10,12 @@ import entities.Person;
 public class ViewUser {
 	
 	private String email;
+	private boolean isFriend;
 	private BaseDAO dao;
 	
 	public ViewUser() {
 		dao = new BaseDAO();
+		isFriend = false;
 	}
 	
 	public String view() {
@@ -29,6 +31,13 @@ public class ViewUser {
 		if (person != null) {
 			person.setFriends(dao.getUserFriends(person.getEmail()));
 			person.setWall(dao.getUserPost(person.getEmail()));
+			
+			if (person.getFriends().contains(session.get("loggedUser"))) {
+				isFriend = true;
+			}else {
+				isFriend = false;
+			}
+			
 			session.put("personView", person);
 			return "SUCCESS";
 		}
@@ -42,6 +51,14 @@ public class ViewUser {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean getIsFriend() {
+		return isFriend;
+	}
+
+	public void setIsFriend(boolean isFriend) {
+		this.isFriend = isFriend;
 	}
 	
 	

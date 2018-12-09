@@ -3,7 +3,11 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="/struts-tags" prefix="s" %>
 <html>
+<head> 
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
 <body>
+	<s:include value="parts/header.jsp"/>
 OOPS SOMETHING WENT WRONG
 </body>
 </html>

@@ -84,5 +84,16 @@ public class Person {
 		return "FirstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password
 				+ ", gender=" + gender;
 	}
-
+	
+	@Override
+	public boolean equals(Object o) {
+		boolean result = true;
+		if (o != null) {
+			Person p = (Person) o;
+			if (!this.getEmail().equalsIgnoreCase(p.getEmail())) {
+				result = false;
+			}
+		}
+		return result;
+	}
 }

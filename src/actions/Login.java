@@ -2,8 +2,6 @@ package actions;
 
 import java.util.Map;
 
-import org.apache.struts2.interceptor.SessionAware;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,28 +15,31 @@ public class Login extends ActionSupport {
 	public Login() {
 		dao = new BaseDAO();
 	}
-	
-	
+
 	public String login() {
-		Map<String, Object> sessionmap = ActionContext.getContext().getSession(); 
-		//check if logged in 
-		Person p = dao.login(person.getEmail(), person.getPassword());
-		if(p != null) {
+		Map<String, Object> sessionmap = ActionContext.getContext().getSession();
+		Person p = null;
+		// check if logged in
+		if (sessionmap.containsKey("loggedUser")) {
+			p = (Person) sessionmap.get("loggedUser");
+		} else {
+			p = dao.login(person.getEmail(), person.getPassword());
+		}
+		if (p != null) {
+			p.setFriends(dao.getUserFriends(p.getEmail()));
+			p.setWall(dao.getUserPost(p.getEmail()));
 			sessionmap.put("loggedUser", p);
-//			person = p;
 			return "USER";
 		}
-		else {
-			return "FAILURE";
-		}
+		return "FAILURE";
 	}
-	
-	public String logout(){
-		Map<String, Object> sessionmap = ActionContext.getContext().getSession(); 
+
+	public String logout() {
+		Map<String, Object> sessionmap = ActionContext.getContext().getSession();
 		sessionmap.clear();
 		return "SUCCESS";
 	}
-	
+
 	public Person getPerson() {
 		return person;
 	}
@@ -46,7 +47,5 @@ public class Login extends ActionSupport {
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-	
-	
 
 }
