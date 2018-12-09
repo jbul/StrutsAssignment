@@ -151,7 +151,9 @@ public class BaseDAO {
 
 			Post p;
 			while (rs.next()) {
-				p = new Post(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+				Person sender = this.getUserEmail(rs.getString(2));
+				Person receiver= this.getUserEmail(rs.getString(3));
+				p = new Post(rs.getInt(1), sender, receiver, rs.getString(4));
 				post.add(p);
 			}
 			select.close();
@@ -160,6 +162,23 @@ public class BaseDAO {
 		}
 
 		return post;
+	} 
+	
+	public void sendPost(Post p){
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement("insert into post(sender, receiver, message) values(?,?,?)");
+			ps.setString(1, p.getSender().getEmail());
+			ps.setString(2, p.getReceiver().getEmail());
+			ps.setString(3, p.getMessage());
+
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public List<Person> getUserFriends(String email) {

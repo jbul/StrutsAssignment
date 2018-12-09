@@ -30,8 +30,13 @@
 	<action name="viewUser" class="actions.ViewUser" method="view">
 		<result name="SUCCESS">/member.jsp</result>
 	</action>
+	
 <!-- 	Chain allows to redirect to an action rather than a jsp -->
 	<action name="addFriend" class="actions.AddFriend" method="add">
+		<result name="SUCCESS" type="chain">viewUser</result>
+	</action>
+	
+	<action name="post" class="actions.PostMessage" method="post">
 		<result name="SUCCESS" type="chain">viewUser</result>
 	</action>
 		

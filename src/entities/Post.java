@@ -3,18 +3,18 @@ package entities;
 public class Post {
 	
 	private int id; 
-	private String sender;
-	private String receiver;
+	private Person sender;
+	private Person receiver;
 	private String message;
 	
 	
 	public Post() {
-		
+		sender = new Person();
+		receiver = new Person();
 	}
 	
 	
-	
-	public Post(int id, String sender, String receiver, String message) {
+	public Post(int id, Person sender, Person receiver, String message) {
 		super();
 		this.id = id;
 		this.sender = sender;
@@ -22,7 +22,7 @@ public class Post {
 		this.message = message;
 	}
 
-
+	
 
 	public int getId() {
 		return id;
@@ -30,16 +30,16 @@ public class Post {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getSender() {
+	public Person getSender() {
 		return sender;
 	}
-	public void setSender(String sender) {
+	public void setSender(Person sender) {
 		this.sender = sender;
 	}
-	public String getReceiver() {
+	public Person getReceiver() {
 		return receiver;
 	}
-	public void setReceiver(String receiver) {
+	public void setReceiver(Person receiver) {
 		this.receiver = receiver;
 	}
 	public String getMessage() {
