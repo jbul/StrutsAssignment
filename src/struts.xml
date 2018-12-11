@@ -41,6 +41,13 @@
 		<result name="SUCCESS" type="chain">viewUser</result>
 		<result name="USER" type="chain">login</result>
 	</action>
-		
+	
+	<action name="sendReset" class="actions.Password" method="sendReset">
+		<result name="SUCCESS">/index.jsp</result>
+	</action>
+	
+	<action name="reset" class="actions.Password" method="reset">
+		<result name="SUCCESS">/index.jsp</result>
+	</action>
     </package>
 </struts>

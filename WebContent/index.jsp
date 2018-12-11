@@ -19,6 +19,7 @@
 
 		<s:submit value="log in"></s:submit>
 	</s:form>
+	<s:a href="sendResetPassword.jsp">forgot password ?</s:a>
 	<h3>Register</h3>
 
 	<s:form action="register">

@@ -245,5 +245,20 @@ public class BaseDAO {
 		}
 		
 	}
-
+	
+	public void updatePassword(Person p) {
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement("update users set passw = ? where email = ?");
+			ps.setString(1, p.getPassword());
+			ps.setString(2, p.getEmail());
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
