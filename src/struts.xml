@@ -37,6 +37,7 @@
 	</action>
 	
 	<action name="post" class="actions.PostMessage" method="post">
+		<result name="FAILURE">/failure.jsp</result>
 		<result name="SUCCESS" type="chain">viewUser</result>
 		<result name="USER" type="chain">login</result>
 	</action>

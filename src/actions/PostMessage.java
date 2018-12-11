@@ -8,19 +8,23 @@ public class PostMessage {
 	private BaseDAO dao;
 	private Post post;
 	private boolean isUser;
-	
+
 	public PostMessage() {
 		this.dao = new BaseDAO();
 	}
-	
-	public String post(){
-		String result = "SUCCESS";
-		dao.sendPost(post);
-		if (isUser) {
-			result = "USER";
+
+	public String post() {
+		if (post.getMessage().isEmpty()) {
+			return "FAILURE";
+		} else {
+			String result = "SUCCESS";
+			dao.sendPost(post);
+			if (isUser) {
+				result = "USER";
+			}
+
+			return result;
 		}
-		
-		return result;
 	}
 
 	public BaseDAO getDao() {
@@ -46,6 +50,5 @@ public class PostMessage {
 	public void setIsUser(boolean isUser) {
 		this.isUser = isUser;
 	}
-	
-	
+
 }

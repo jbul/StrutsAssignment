@@ -4,17 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Profile</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+	
 	<s:include value="parts/header.jsp" />
+	<h2>
 	<section>
 		<s:property value="#session.personView.firstName" />
 		<s:property value="#session.personView.lastName" />
 
 		<s:form action="addFriend">
-
+			<s:set name="isFriend" value="isFriend"/>
 			<s:if test="%{#isFriend==false}">
 				<s:submit value="Add"></s:submit>
 			</s:if>
@@ -23,7 +25,7 @@
 			</s:elseif>
 
 		</s:form>
-
+		</h2>
 		<h3>Send a message</h3>
 		<s:form action="post">
 			<s:textfield name="post.message" maxlength="255" />
