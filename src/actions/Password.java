@@ -14,6 +14,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.sun.mail.smtp.SMTPTransport;
+
 import dao.BaseDAO;
 import entities.Person;
 
@@ -25,23 +27,21 @@ public class Password {
 	public Password() {
 		dao = new BaseDAO();
 	}
-
+	
+	/**
+	 * Sends an email to the user trying to recover his password.
+	 * CHECK SPAM EMAILS as the email can be sent here
+	 * @return
+	 */
 	public String sendReset() {
 
 		if (dao.checkEmail(person.getEmail())) {
 
 			Properties props = new Properties();
-			props.put("mail.smtp.auth", true);
-			props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.host", "smtp.mailtrap.io");
-			props.put("mail.smtp.port", "2525");
-			props.put("mail.smtp.ssl.trust", "smtp.mailtrap.io");
+			props.put("mail.smtps.host", "smtp.mailgun.org");
+	        props.put("mail.smtps.auth", "true");
 
-			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("d458670b53102b", "f8bea4e67431e8");
-				}
-			});
+	        Session session = Session.getInstance(props, null);
 
 			Message message = new MimeMessage(session);
 			try {
@@ -60,7 +60,14 @@ public class Password {
 
 				message.setContent(multipart);
 
-				Transport.send(message);
+		        SMTPTransport t =
+		                (SMTPTransport) session.getTransport("smtps");
+		            t.connect("smtp.mailgun.com", "postmaster@sandbox009815e8edb541bfbd15ca27b40b9100.mailgun.org", "06c1222bca72f3d2cbeb7be8f3bc5e65-e89319ab-2f75482f");
+		            t.sendMessage(message, message.getAllRecipients());
+
+		            System.out.println("Response: " + t.getLastServerResponse());
+
+		            t.close();
 				returnMessage = "An email has been sent, check your mailbox to get your reset link";
 			} catch (AddressException e) {
 				// TODO Auto-generated catch block
