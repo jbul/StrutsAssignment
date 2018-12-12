@@ -71,11 +71,15 @@ public class Password {
 				returnMessage = "An email has been sent, check your mailbox to get your reset link";
 			} catch (AddressException e) {
 				// TODO Auto-generated catch block
+				returnMessage = "An error has occured while resetting password, this address does not seem to exist";
 				e.printStackTrace();
 			} catch (MessagingException e) {
+				returnMessage = "An error has occured while resetting password";
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else {
+			returnMessage = "Your email could not be found in the system";
 		}
 		return "SUCCESS";
 	}
